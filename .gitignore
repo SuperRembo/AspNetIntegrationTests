@@ -28,3 +28,6 @@ _ReSharper*/
 
 # Rider
 .idea
+
+# Other
+*.log
