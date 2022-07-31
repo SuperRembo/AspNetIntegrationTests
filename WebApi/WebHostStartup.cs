@@ -1,11 +1,19 @@
-namespace WebApi;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
-public class WebHostStartup
+namespace WebApi
 {
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public class WebHostStartup
     {
-        app.UseRouting();
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseRouting();
 
-        app.UseEndpoints(endpoints => { endpoints.MapGet("/", () => "Hello World!"); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/", async context => await context.Response.WriteAsync("Hello World!"));
+            });
+        }
     }
 }

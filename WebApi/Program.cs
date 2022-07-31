@@ -1,20 +1,24 @@
-namespace WebApi;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-public static class Program
+namespace WebApi
 {
-    public static void Main(string[] args)
+    public static class Program
     {
-        CreateHostBuilder(args)
-            .Build()
-            .Run();
-    }
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args)
+                .Build()
+                .Run();
+        }
 
-    /// <remarks>This method is extracted to allow testing using WebApplicationFactory.</remarks>
-    public static IHostBuilder CreateHostBuilder(string[] args)
-    {
-        return Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-                webBuilder.UseStartup<WebHostStartup>()
-                    .UseKestrel());
+        /// <remarks>This method is extracted to allow testing using WebApplicationFactory.</remarks>
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                    webBuilder.UseStartup<WebHostStartup>()
+                        .UseKestrel());
+        }
     }
 }

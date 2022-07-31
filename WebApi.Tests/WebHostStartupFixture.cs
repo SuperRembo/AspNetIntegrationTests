@@ -5,23 +5,25 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 using NUnit.Framework;
 
-namespace WebApi.Tests;
-
-class WebHostStartupFixture
+namespace WebApi.Tests
 {
-    readonly WebApplicationFactory<WebHostStartup> factory = new();
 
-    [Test]
-    public async Task Should_get_content()
+    class WebHostStartupFixture
     {
-        using var client = factory.CreateClient();
+        readonly WebApplicationFactory<WebHostStartup> factory = new();
 
-        var response = await client.GetAsync("/");
+        [Test]
+        public async Task Should_get_content()
+        {
+            using var client = factory.CreateClient();
 
-        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            var response = await client.GetAsync("/");
 
-        var content = await response.Content.ReadAsStringAsync();
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-        Assert.That(content, Is.EqualTo("Hello World!"));
+            var content = await response.Content.ReadAsStringAsync();
+
+            Assert.That(content, Is.EqualTo("Hello World!"));
+        }
     }
 }
